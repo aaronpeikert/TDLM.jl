@@ -1,5 +1,15 @@
 using TDLM
 using Documenter
+import Literate
+
+mdpath = mkpath("./docs/src/md/")
+long = "docs/src/long"
+# get all files
+mdsource = long*"/" .* readdir(long)
+# convert to md
+Literate.markdown.(mdsource, [mdpath]; documenter = true)
+Literate.script.(mdsource, [mdpath]; preprocess = x -> replace(x, "\n\n" => ""))
+
 
 DocMeta.setdocmeta!(TDLM, :DocTestSetup, :(using TDLM); recursive=true)
 
@@ -18,6 +28,7 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
+        "Translation eLife" => "md/eLife.md"
     ],
     doctest = false, # use :fix to auto fix.
 )
@@ -27,3 +38,4 @@ deploydocs(;
     devbranch = "devel",
     push_preview = "push_preview=true" ∈ ARGS
 )
+
