@@ -2,5 +2,5 @@ using TDLM
 using Test
 
 @testset "TDLM.jl" begin
-    # Write your tests here.
+    include("Simulate/Simulate.jl")
 end

@@ -12,3 +12,9 @@ Documentation for [TDLM](https://github.com/aaronpeikert/TDLM.jl).
 ```@autodocs
 Modules = [TDLM]
 ```
+
+## Simulate
+
+```@autodocs
+Modules = [TDLM.Simulate]
+```
