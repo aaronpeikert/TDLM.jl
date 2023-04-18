@@ -1,5 +1,3 @@
-cp("../docs/Manifest.toml", "./Manifest.toml", force=true)
-
 using TDLM
 using Test
 using Documenter
