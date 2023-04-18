@@ -19,6 +19,7 @@ makedocs(;
     pages=[
         "Home" => "index.md",
     ],
+    doctest = false, # use :fix to auto fix.
 )
 
 deploydocs(;
