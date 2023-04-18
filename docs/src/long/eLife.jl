@@ -29,7 +29,7 @@ nSensors = 273;
 nStates = 8;
 nTrainPerStim = 18;
 
-# Here we sample `commonPattern` from a normal distribution and create copies with 50% noise. See documentation for [`Noise`](@ref).
+# Here we sample `commonPattern` from a normal distribution and create copies with 50% noise. See documentation for [`Simulate.Noise`](@ref).
 commonPattern = randn(1, nSensors);
 patterns = repeat(commonPattern, 1, 1, nStates) + Noise();
 # ```@raw html
@@ -62,4 +62,3 @@ hcat([coef(fit(LassoPath,
         trainingData,
         vec(trainingLabels .== i),
         Binomial(); α=1.0, nλ=100), select = MinAICc()) for i in 1:nStates]...)
-        
