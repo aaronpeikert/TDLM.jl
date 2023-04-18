@@ -40,8 +40,7 @@ patterns = cat(zeros(1, nSensors), patterns, dims = 3);
 
 # We create samples by adding irreducible error sd = 4, and obtain a three dimensionam matrix with dims: 1. observation, 2. sensor, 3. pattern/stimulus
 trainingData = repeat(patterns, nTrainPerStim) + Noise(Normal(0, 4));
-#md size(trainingData)
-#md (nTrainPerStim, nSensors, nStates + 1)
+#md size(trainingData) == (nTrainPerStim, nSensors, nStates + 1)
 # ```@raw html
 # <script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FYunzheLiu%2FTDLM%2Fblob%2F5e8679dec3026037918057a5f38799e9b066deda%2FSimulate_Replay.m%23L53-L65&style=atom-one-dark-reasonable&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
 # ```
@@ -58,7 +57,7 @@ trainingLabels = hcat(repeat((0:nStates), inner = nTrainPerStim));
 # <script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FYunzheLiu%2FTDLM%2Fblob%2F5e8679dec3026037918057a5f38799e9b066deda%2FSimulate_Replay.m%23L67-73&style=atom-one-dark-reasonable&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
 # ```
 
-hcat([coef(fit(LassoPath,
+reduce(hcat, coef(fit(LassoPath,
         trainingData,
         vec(trainingLabels .== i),
-        Binomial(); α=1.0, nλ=100), select = MinAICc()) for i in 1:nStates]...)
+        Binomial(); α=1.0, nλ=100), select = MinAICc()) for i in 1:nStates)
