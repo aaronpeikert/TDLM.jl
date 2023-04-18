@@ -6,7 +6,7 @@ using Distributions, Lasso# Some parameters:
 
 nSensors = 273;
 nStates = 8;
-nTrainPerStim = 18;# Here we sample `commonPattern` from a normal distribution and create copies with 50% noise. See documentation for `Noise`.
+nTrainPerStim = 18;# Here we sample `commonPattern` from a normal distribution and create copies with 50% noise. See documentation for `Simulate.Noise`.
 commonPattern = randn(1, nSensors);
 patterns = repeat(commonPattern, 1, 1, nStates) + Noise();
 
