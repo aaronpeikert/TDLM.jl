@@ -6,24 +6,24 @@ patterns = repeat(commonPattern, 1, 1, nStates) + Noise();</code></pre><script s
 size(trainingData) == (nTrainPerStim, nSensors, nStates + 1)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">true</code></pre><script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FYunzheLiu%2FTDLM%2Fblob%2F5e8679dec3026037918057a5f38799e9b066deda%2FSimulate_Replay.m%23L53-L65&style=atom-one-dark-reasonable&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script><p>Four states get more noise.</p><pre><code class="language-julia hljs">trainingData[:, :, sample(1:nStates, 4)] += Noise();</code></pre><p>Flatten <code>trainingData</code> (from 3dim to 2dim)</p><pre><code class="language-julia hljs">trainingData = reduce(vcat, trainingData[:, :, i] for i in axes(trainingData, 3));</code></pre><script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FYunzheLiu%2FTDLM%2Fblob%2F5e8679dec3026037918057a5f38799e9b066deda%2FSimulate_Replay.m%23L50&style=atom-one-dark-reasonable&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script><pre><code class="language-julia hljs">trainingLabels = hcat(repeat((0:nStates), inner = nTrainPerStim));</code></pre><script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FYunzheLiu%2FTDLM%2Fblob%2F5e8679dec3026037918057a5f38799e9b066deda%2FSimulate_Replay.m%23L67-73&style=atom-one-dark-reasonable&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script><pre><code class="language-julia hljs">reduce(hcat, coef(fit(LassoPath,
         trainingData,
         vec(trainingLabels .== i),
-        Binomial(); α=1.0, nλ=100), select = MinAICc()) for i in 1:nStates)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">274×8 SparseArrays.SparseMatrixCSC{Float64, Int64} with 84 stored entries:
-⣛
-⠆
-⠩
-⠅
-⡠
+        Binomial(); α=1.0, nλ=100), select = MinAICc()) for i in 1:nStates)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">274×8 SparseArrays.SparseMatrixCSC{Float64, Int64} with 76 stored entries:
+⣋
 ⠗
-⠳
-⣶
 ⠐
-⡡
 ⡁
-⡤
-⠂
-⡌
-⢈
-⣢
-⣨
-⠆
-⡁
-⠇</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../../">« Home</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.24 on <span class="colophon-date" title="Wednesday 19 April 2023 10:36">Wednesday 19 April 2023</span>. Using Julia version 1.8.5.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+⠄
+⠄
+⡇
+⠤
+⣪
+⠀
+⣃
+⡔
+⠇
+⡙
+⠥
+⡃
+⡠
+⡂
+⡜
+⠃</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../../">« Home</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.24 on <span class="colophon-date" title="Wednesday 19 April 2023 10:39">Wednesday 19 April 2023</span>. Using Julia version 1.8.5.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
