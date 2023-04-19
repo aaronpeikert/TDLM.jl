@@ -20,7 +20,7 @@ trainingLabels = hcat(repeat((0:nStates), inner = nTrainPerStim));
 
         trainingData,
         vec(trainingLabels .== i),
-        Binomial(); α=1.0, nλ=100), select = MinAICc()) for i in 1:nStates]...)
+        Binomial(); α=1.0, nλ=100), select = MinAICc()) for i in 1:nStates)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
 
