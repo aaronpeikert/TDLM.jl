@@ -61,7 +61,6 @@ function Base.iterate(S::RandomSequence, prev = zeros(eltype(eltype(S)), size(S,
 end
 Base.IteratorSize(::RandomSequence) = Base.IsInfinite()
 Base.eltype(::Type{RandomSequence{T1, T2}}) where {T1, T2} = Vector{eltype(T1)}
-Base.IteratorEltype(::RandomSequence) = Base.HasEltype()
 Base.size(S::RandomSequence{T}) where {T <: Sampleable} = (length(S.dist), Inf)
 Base.size(::RandomSequence{T}) where {T <: AbstractArray} = (1, Inf)
 Base.size(S::RandomSequence, d::Integer) = size(S)[convert(Int, d)]
