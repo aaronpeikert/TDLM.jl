@@ -60,7 +60,7 @@ function Base.iterate(S::RandomSequence, prev = zeros(eltype(eltype(S)), size(S,
     state = vec(S.mix(prev, rand(S.rng, S.dist, 1)))
     (state, state)
 end
-Base.IteratorSize(::Type{RandomSequence}) = Base.IsInfinite()
+Base.IteratorSize(::Type{RandomSequence{T1, T2}}) where {T1, T2} = Base.IsInfinite()
 Base.eltype(::Type{RandomSequence{T1, T2}}) where {T1, T2} = Vector{eltype(T1)}
 Base.size(S::RandomSequence{T}) where {T <: Sampleable} = (length(S.dist), Inf)
 Base.size(::RandomSequence{T}) where {T <: AbstractArray} = (1, Inf)
