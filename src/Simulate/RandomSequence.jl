@@ -24,18 +24,12 @@ julia> import Distributions
 
 julia> s1 = RandomSequence(Distributions.MvNormal(rand_cov(2, rng = StableRNG(42))); rng = StableRNG(42));
 
-julia> s1[1:100, :] # sequence is infinite, simply index as much as you need
-100×2 Matrix{Float64}:
- -0.299517    0.0105985
-  0.314321    1.45151
-  0.370658    1.95421
- -0.0847956   1.00213
-  0.708281    2.60451
-  ⋮          
- -3.32418    -2.6863
- -3.49731    -3.67663
- -4.07799    -4.91543
- -4.1837     -4.66306
+julia> s1[1:4, :] # sequence is infinite, simply index as much as you need
+4×2 Matrix{Float64}:
+ -0.299517   0.0105985
+  0.314321   1.45151
+  0.370658   1.95421
+ -0.0847956  1.00213
 
 julia> # dist can also be a vector, and mix can be an abitrary function
 
