@@ -12,5 +12,5 @@ using TDLM.Simulate
     @test size(s2) == (1, Inf)
     @test eltype(s2) == Vector{eltype(d2)}
     @test size(s1[1:5, :]) == (5, 5)
-    @test Base.IteratorSize(s1) == Base.IsInfinite()
+    @test Base.IteratorSize(typeof(s1)) == Base.IsInfinite()
 end
