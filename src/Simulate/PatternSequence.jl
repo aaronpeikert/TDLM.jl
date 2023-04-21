@@ -11,7 +11,7 @@ abstract type TransitionSequence end
 
 An instance of TransitionSequence, where the transitions are expressed as dictionary/pairing of states.
 
-```jldoctest; setup = :(using StableRNGs)
+```jldoctest; setup = :(using TDLM.Simulate, StableRNGs)
 julia> S = TransitionDictSequence(1 => 2, 2 => 3; rng = StableRNG(42));
 
 julia> collect(S)
@@ -36,7 +36,7 @@ Base.IteratorSize(::Type{TransitionDictSequence{T}}) where T = Base.SizeUnknown(
 
 Returns the possible states a TransitionSequence may have.
 
-```jldoctest
+```jldoctest; setup = :(using TDLM.Simulate)
 julia> S = TransitionDictSequence(1 => 2, 2 => 3);
 
 julia> possible_states(S) == Set(1:3)
@@ -50,7 +50,7 @@ possible_states(transition::TransitionDictSequence) = union(keys(transition.dict
 
 Instead of returning a state, a pattern sequence goes through the state transistions and returns the corresponding patttern.
 
-```jldoctest; setup = :(using StableRNGs)
+```jldoctest; setup = :(using TDLM.Simulate, StableRNGs)
 julia> S = PatternSequence(TransitionDictSequence(1 => 2, 2 => 1; rng = StableRNG(42)), ["a", "b"]);
 
 julia> collect(Iterators.take(S, 5))
