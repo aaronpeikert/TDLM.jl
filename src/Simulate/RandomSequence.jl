@@ -46,6 +46,7 @@ julia> RandomSequence([2 4], (prev, next) -> next - prev; rng = StableRNG(43))[1
  2
  0
  2
+ ```
 """
 struct RandomSequence{T1, T2}
     dist::T1
