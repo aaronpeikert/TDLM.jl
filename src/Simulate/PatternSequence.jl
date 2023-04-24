@@ -62,11 +62,12 @@ julia> collect(Iterators.take(S, 5))
  "b"
 ```
 """
-struct PatternSequence{T1 <: TransitionSequence, T2}
+struct PatternSequence{T1, T2}
     transition::T1
     pattern::T2
-    function PatternSequence(transition::T1, pattern::T2) where {T1 <: TransitionSequence, T2}
-        if !issubset(possible_states(transition), axes(pattern, 1))
+    axis::Int
+    function PatternSequence(transition::T1, pattern::T2; axis = 1) where {T1 <: TransitionSequence, T2}
+        if !issubset(possible_states(transition), axes(pattern, axis))
             throw(ArgumentError("States and pattern don't match."))
         else
             new{T1, T2}(transition, pattern)
