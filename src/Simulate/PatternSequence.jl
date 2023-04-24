@@ -110,7 +110,7 @@ struct RandomLength{I}
     RandomLength(xs::I, dist; fun = first, rng = Random.GLOBAL_RNG) where I = new{I}(xs, dist, fun, rng)
 end
 
-function Base.iterate(S::RandomLength, state::Int = (S.fun(rand(S.rng, S.dist, 1)), ))
+function Base.iterate(S::RandomLength, state = (S.fun(rand(S.rng, S.dist, 1)), ))
     n, rest = state[1], Iterators.tail(state)
     n <= 0 && return nothing
     y = iterate(S.xs, rest...)
