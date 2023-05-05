@@ -1,4 +1,4 @@
-export TransitionSequence, TransitionDictSequence, possible_states, PatternSequence, RandomLength
+export TransitionSequence, TransitionDictSequence, possible_states, PatternSequence
 
 """
 A `TransitionSequence` starts in a random state, and then returns states according to the transitions till it runs out of states.
@@ -84,39 +84,3 @@ function Base.iterate(S::PatternSequence, state)
 end
 Base.eltype(::Type{PatternSequence{T1, T2}}) where {T1, T2} = eltype(T2)
 Base.IteratorSize(::Type{PatternSequence{T1, T2}}) where {T1, T2} = Base.IteratorSize(T1)
-"""
-RandomLength(xs, dist)
-
-`RandomLength` wraps a sequence but returns the first `n` elements, where `n` is choosen randomly based on `dist`.
-
-```jldoctest; setup = :(using TDLM.Simulate, StableRNGs)
-julia> S = RandomLength(1:100, [1 3]; rng = StableRNG(42));
-
-julia> collect(S)
-3-element Vector{Int64}:
- 1
- 2
- 3 
-julia> collect(S)
-1-element Vector{Int64}:
- 1
-```
-"""
-struct RandomLength{I}
-    xs::I
-    dist
-    fun
-    rng
-    RandomLength(xs::I, dist; fun = first, rng = Random.GLOBAL_RNG) where I = new{I}(xs, dist, fun, rng)
-end
-
-function Base.iterate(S::RandomLength, state = (S.fun(rand(S.rng, S.dist, 1)), ))
-    n, rest = state[1], Iterators.tail(state)
-    n <= 0 && return nothing
-    y = iterate(S.xs, rest...)
-    y === nothing && return nothing
-    return y[1], (n - 1, y[2])
-end
-
-Base.eltype(::Type{RandomLength{T}}) where {T} = eltype(T)
-Base.IteratorSize(::Type{RandomLength{T}}) where {T} = Base.SizeUnknown()
