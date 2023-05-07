@@ -1,3 +1,5 @@
+export interweave
+
 """
     interweave(is...; limiters = 1)
 
