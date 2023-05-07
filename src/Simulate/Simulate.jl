@@ -7,6 +7,7 @@ include("RandomSequence.jl")
 include("TransitionSequence.jl")
 include("PatternSequence.jl")
 include("RandomLength.jl")
+include("Interweave.jl")
 include("iterator_utilities.jl")
 
 end
