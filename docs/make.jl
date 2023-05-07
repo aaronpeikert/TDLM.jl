@@ -38,4 +38,3 @@ deploydocs(;
     devbranch = "devel",
     push_preview = "push_preview=true" ∈ ARGS
 )
-
