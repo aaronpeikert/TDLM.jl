@@ -92,7 +92,6 @@ function Base.iterate(s::Interweave, state::InterweaveState = InterweaveState(mi
     end
 end
 Base.IteratorSize(::Type{Interweave{T}}) where {T} = Base.SizeUnknown()
-Base.IteratorSize(::Type{Chain{T}}) where {T} = Base.SizeUnknown()
 function Base.eltype(::Type{Interweave{T}}) where {T}
     promote_type(map(eltype, fieldtypes(T))...)
 end
