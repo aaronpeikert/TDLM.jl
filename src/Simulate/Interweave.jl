@@ -24,8 +24,8 @@ julia> collect(interweave(1:2, 11:12))
   0
 ```
 """
-
 interweave(is...; ns = missing) = Interweave(is; ns)
+
 struct Interweave{Is}
     is::Is
     ns::Tuple
@@ -41,12 +41,6 @@ tuple_length(::Type{<:NTuple{N, Any}}) where {N} = Val{N}()
 tuple_length(x) = tuple_length(typeof(x))
 ones_for_tuple(x::Type{<:NTuple{N, Any}}) where {N} = ntuple(_ -> 1, tuple_length(x))
 ones_for_tuple(x) = ones_for_tuple(typeof(x))
-
-function Base.iterate(S::Interweave)
-    iters = map(Iterators.Stateful, S.is)
-    iters = map(Iterators.Take, iters, S.ns)
-    Base.iterate(S, (iters, iterate(iters)))    
-end
 
 struct InterweaveState
     outer
