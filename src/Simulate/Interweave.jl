@@ -14,19 +14,20 @@ julia> collect(interweave(1:2, 11:12))
   2
  12
 
- julia> collect(interweave(1:3, Iterators.cycle(0), limiters = (1, 2)))
- 9-element Vector{Int64}:
-  1
-  0
-  0
-  2
-  0
-  0
-  3
-  0
-  0
+julia> collect(interweave(1:3, Iterators.cycle(0), limiters = (1, 2)))
+9-element Vector{Int64}:
+ 1
+ 0
+ 0
+ 2
+ 0
+ 0
+ 3
+ 0
+ 0
 
 julia> collect(interweave(1:3, 11:13, limiters = x -> random_length(x, [1 2])));
+
 ```
 """
 interweave(is...; limiters = 1) = Interweave(is, limiters)
