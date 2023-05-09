@@ -26,9 +26,9 @@ hfuse(is...; fuse = +) = HorizentalFuse(is, fuse)
 struct HorizentalFuse{T1 <: Tuple, T2 <: Function}
     is::Iterators.Zip{T1}
     fuse::T2
-    HorizentalFuse(is::Iterators.Zip{T1}, fuse::T2) where {T1, T2} = new{T1,T2}(zip(is...), fuse)
+    HorizentalFuse(is::Iterators.Zip{T1}, fuse::T2) where {T1, T2} = new{T1,T2}(is, fuse)
 end
-HorizentalFuse(is) = HorizentalFuse(zip(is))
+HorizentalFuse(is::Tuple, fuse::Function) = HorizentalFuse(zip(is...), fuse)
 
 function Base.iterate(i::HorizentalFuse)
     bundle = iterate(i.is)
