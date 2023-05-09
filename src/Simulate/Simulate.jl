@@ -9,5 +9,6 @@ include("PatternSequence.jl")
 include("RandomLength.jl")
 include("Interweave.jl")
 include("iterator_utilities.jl")
+include("fuse.jl")
 
 end
