@@ -43,7 +43,6 @@ function Base.iterate(i::HorizentalFuse, state)
 end
 
 Base.IteratorSize(::Type{HorizentalFuse{T1,T2}}) where {T1,T2} = Iterators.SizeUnknown()
-Base.length(x::HorizentalFuse) = length(x.is)
 function Base.eltype(::Type{HorizentalFuse{T1,T2}}) where {T1,T2 <: Union{typeof(+),typeof(-),typeof(*),typeof(/)}}
     Base.promote_type(map(eltype, fieldtypes(T1))...)
 end
